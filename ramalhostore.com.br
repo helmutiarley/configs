@@ -1,0 +1,27 @@
+server {
+    listen 80;
+    server_name ramalhostore.com.br;  # substitua pelo seu domínio ou IP
+
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Configurações de segurança
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires max;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    # Evita acesso a arquivos ocultos
+    location ~ /\. {
+        deny all;
+    }
+
+    # Configurações básicas de segurança
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-XSS-Protection "1; mode=block";
+}
