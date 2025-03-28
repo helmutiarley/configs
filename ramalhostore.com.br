@@ -1,6 +1,7 @@
 server {
     listen 80;
-    server_name ramalhostore.com.br;  # substitua pelo seu domínio ou IP
+    listen [::]:80;
+    server_name ramalhostore.com.br www.ramalhostore.com.br;  # seus domínios
 
     root /var/www/html;
     index index.html;
